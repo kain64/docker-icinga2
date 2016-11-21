@@ -101,6 +101,11 @@ RUN mkdir -p /var/log/supervisor; \
 
 # configure PHP timezone
 RUN sed -i 's/;date.timezone =/date.timezone = UTC/g' /etc/php.ini
+RUN yum install wget;
+RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jre-8u111-linux-x64.rpm;
+RUN yum -y localinstall jre-8u111-linux-x64.rpm;
+RUN yum -y install python-pip; yum clean all;
+RUN pip install psutil nagiosplugin wmi dexml pymssql requests netifaces flask jsonpickle flask-autodoc pyodbc
 
 # ports (icinga2 api & cluster (5665), mysql (3306))
 EXPOSE 22 80 443 5665 3306
