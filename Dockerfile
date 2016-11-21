@@ -111,12 +111,9 @@ RUN yum -y localinstall jre-8u111-linux-x64.rpm;
 RUN yum -y install python-pip; yum clean all;
 RUN pip install nagiosplugin pymssql requests netifaces flask jsonpickle flask-autodoc pyodbc
 
-RUN yum -y install python-setuptools nano; 
-RUN easy_install supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # ports (icinga2 api & cluster (5665), mysql (3306))
-EXPOSE 22 80 443 5665 3306 9001
+EXPOSE 22 80 443 5665 3306 
 
 # volumes
 VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/icinga2", "/usr/share/icingaweb2", "/var/lib/mysql"]
