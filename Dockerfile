@@ -51,7 +51,7 @@ RUN sed -i -e 's/^.* NodeName = .*/const NodeName = "docker-icinga2"/gi' /etc/ic
 # includes supervisor config
 ADD content/ /
 RUN chmod u+x /opt/icinga2/initdocker
-COPY content/icingapatch/configuration.php /usr/share/icingaweb2/modules/monitoring/
+
 
 # no PAM
 # http://stackoverflow.com/questions/18173889/cannot-access-centos-sshd-on-docker

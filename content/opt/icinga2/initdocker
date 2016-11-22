@@ -91,6 +91,8 @@ fi
 if [ ! -d /var/log/httpd ];  then
 	mkdir -p /var/log/httpd
 fi
-
+wget https://github.com/findmypast/icingaweb2-module-graphite/archive/master.zip
+unzip -o master.zip /etc/icingaweb2/modules/graphite
+yes | rm -rf master.zip
 echo_log "Starting Supervisor. CTRL-C will stop the container."
 /usr/bin/supervisord -c /etc/supervisord.conf >> /dev/null
