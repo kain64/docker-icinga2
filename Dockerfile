@@ -116,7 +116,7 @@ RUN pip install nagiosplugin pymssql requests netifaces flask jsonpickle flask-a
 RUN wget http://sourceforge.net/projects/nagios/files/nrpe-2.x/nrpe-2.14/nrpe-2.14.tar.gz
 RUN tar vfxz nrpe-2.14.tar.gz; \
  cd nrpe-2.14; \
- sed -i 's/#define[[:space:]]MAX_PACKETBUFFER_LENGTH[[:space:]]1024/#define MAX_PACKETBUFFER_LENGTH 10240/' ./include/common.h
+ sed -i 's/#define[[:space:]]MAX_PACKETBUFFER_LENGTH[[:space:]]1024/#define MAX_PACKETBUFFER_LENGTH 10240/' ./include/common.h; \
  ./configure; \
  make; \
  cp ./src/check_nrpe /bin/; 
