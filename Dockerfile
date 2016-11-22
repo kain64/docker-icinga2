@@ -101,6 +101,9 @@ RUN mkdir -p /var/log/supervisor; \
 
 # configure PHP timezone
 RUN sed -i 's/;date.timezone =/date.timezone = UTC/g' /etc/php.ini
+RUN yum -y install -y openssl-devel
+RUN yum -y install -y openssl
+RUN yum -y install crudini
 RUN yum -y groupinstall 'Development Tools';
 RUN yum -y install python-devel
 RUN yum -y install freetds freetds-devel
@@ -110,7 +113,14 @@ RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://down
 RUN yum -y localinstall jre-8u111-linux-x64.rpm;
 RUN yum -y install python-pip; yum clean all;
 RUN pip install nagiosplugin pymssql requests netifaces flask jsonpickle flask-autodoc pyodbc
-
+RUN wget http://sourceforge.net/projects/nagios/files/nrpe-2.x/nrpe-2.14/nrpe-2.14.tar.gz
+RUN tar vfxz nrpe-2.14.tar.gz; \
+ cd nrpe-2.14; \
+ sed -i 's/#define[[:space:]]MAX_PACKETBUFFER_LENGTH[[:space:]]1024/#define MAX_PACKETBUFFER_LENGTH 10240/' ./include/common.h
+ ./configure; \
+ make; \
+ cp ./src/check_nrpe /bin/; 
+ 
 
 # ports (icinga2 api & cluster (5665), mysql (3306))
 EXPOSE 22 80 443 5665 3306 
