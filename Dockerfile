@@ -103,7 +103,7 @@ RUN mkdir -p /var/log/supervisor; \
 RUN sed -i 's/;date.timezone =/date.timezone = UTC/g' /etc/php.ini
 RUN yum -y install -y openssl-devel
 RUN yum -y install -y openssl
-RUN yum -y install crudini
+RUN yum -y install crudini nano
 RUN yum -y groupinstall 'Development Tools';
 RUN yum -y install python-devel
 RUN yum -y install freetds freetds-devel
@@ -119,11 +119,12 @@ RUN tar vfxz nrpe-2.14.tar.gz; \
  sed -i 's/#define[[:space:]]MAX_PACKETBUFFER_LENGTH[[:space:]]1024/#define MAX_PACKETBUFFER_LENGTH 10240/' ./include/common.h; \
  ./configure; \
  make; \
- cp ./src/check_nrpe /bin/; 
- 
+ cp ./src/check_nrpe /bin/; \
+ cp ./src/check_nrpe /usr/lib64/nagios/plugins/
+ RUN mysql -e "CREATE USER 'daletusr'@'localhost' IDENTIFIED BY 'Tra@J&)'"
 
-# ports (icinga2 api & cluster (5665), mysql (3306))
-EXPOSE 22 80 443 5665 3306 
+# ports (icinga2 api & cluster (5665), mysql (3306)), confagent 10103
+EXPOSE 22 80 443 5665 3306 10103
 
 # volumes
 VOLUME ["/etc/icinga2", "/etc/icingaweb2", "/var/lib/icinga2", "/usr/share/icingaweb2", "/var/lib/mysql"]
