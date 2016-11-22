@@ -121,7 +121,7 @@ RUN tar vfxz nrpe-2.14.tar.gz; \
  make; \
  cp ./src/check_nrpe /bin/; \
  cp ./src/check_nrpe /usr/lib64/nagios/plugins/
- RUN mysql -e "CREATE USER 'daletusr'@'localhost' IDENTIFIED BY 'Tra@J&)'"
+
 
 # ports (icinga2 api & cluster (5665), mysql (3306)), confagent 10103
 EXPOSE 22 80 443 5665 3306 10103
