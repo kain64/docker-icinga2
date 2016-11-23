@@ -112,7 +112,7 @@ RUN yum -y install wget;
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jre-8u111-linux-x64.rpm;
 RUN yum -y localinstall jre-8u111-linux-x64.rpm;
 RUN yum -y install python-pip; yum clean all;
-RUN pip install nagiosplugin pymssql requests netifaces flask jsonpickle flask-autodoc pyodbc
+RUN pip install nagiosplugin pymssql requests netifaces flask jsonpickle flask-autodoc pyodbc sqlalchemy six pyinotify
 RUN wget http://sourceforge.net/projects/nagios/files/nrpe-2.x/nrpe-2.14/nrpe-2.14.tar.gz
 RUN tar vfxz nrpe-2.14.tar.gz; \
  cd nrpe-2.14; \
