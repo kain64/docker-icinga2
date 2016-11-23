@@ -100,6 +100,10 @@ cp -r ./graphite /etc/icingaweb2/modules/graphite
 ln -s /etc/icingaweb2/modules/graphite  /etc/icingaweb2/enabledModules/graphite
 rm -rf /tmp/graphite
 yes | rm -rf master.zip
+echo '[graphite]' >/tmp/config.ini
+echo 'metric_prefix = icinga2' >>config.ini
+crudini --set /tmp/config.ini 'graphite' 'base_url' 'http://'$HOST_PC_IP':9090/render/?'
+cp /tmp/config.ini /etc/icingaweb2/modules/graphite/config.ini
 popd
 echo_log "Starting Supervisor. CTRL-C will stop the container."
 /usr/bin/supervisord -c /etc/supervisord.conf >> /dev/null
