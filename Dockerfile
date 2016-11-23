@@ -106,6 +106,8 @@ RUN yum -y install -y openssl
 RUN yum -y install crudini nano
 RUN yum -y groupinstall 'Development Tools';
 RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+RUN yum -y install epel-release
+RUN yum -y install python35u-devel.x86_64
 RUN yum -y install python35u-3.5.2
 RUN yum -y install freetds freetds-devel
 RUN yum -y install unixODBC-devel
