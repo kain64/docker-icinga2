@@ -97,7 +97,7 @@ pushd /tmp
 unzip /tmp/graphite.zip
 mv  /tmp/icingaweb2-module-graphite-master/ /tmp/graphite
 cp -r ./graphite /etc/icingaweb2/modules/graphite
-cp -r ./graphite /etc/icingaweb2/enabledModules/graphite
+ln -s /etc/icingaweb2/modules/graphite  /etc/icingaweb2/enabledModules/graphite
 rm -rf /tmp/graphite
 yes | rm -rf master.zip
 popd
