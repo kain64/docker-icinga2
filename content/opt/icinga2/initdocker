@@ -93,7 +93,6 @@ if [ ! -d /var/log/httpd ];  then
 fi
  
 wget https://github.com/findmypast/icingaweb2-module-graphite/archive/master.zip -O /tmp/graphite.zip
-unzip -o icingaweb2-module-graphite-master.zip /etc/icingaweb2/modules/graphite
 unzip /tmp/graphite.zip
 mv  /tmp/icingaweb2-module-graphite-master/ /tmp/graphite
 cp -r ./graphite /etc/icingaweb2/modules/graphite
