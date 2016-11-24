@@ -105,7 +105,8 @@ echo 'metric_prefix = icinga2' >>config.ini
 crudini --set /tmp/config.ini 'graphite' 'base_url' 'http://'$HOST_PC_IP':9090/render/?'
 cp /tmp/config.ini /etc/icingaweb2/modules/graphite/config.ini
 popd
-echo_log "Starting Supervisor. CTRL-C will stop the container."
-/usr/bin/supervisord -c /etc/supervisord.conf >> /dev/null
 yum -y install curl
 curl -X POST 'http://admin:admin@'$HOST_PC_IP':3000/api/datasources'  -H "Content-Type: application/json" --data '{"name":"dalet_dashboard_graphite","type":"graphite","access":"proxy","password":"admin","user":"admin", "url":"http://'$HOST_PC_IP':9090","basicAuth":false}'
+echo_log "Starting Supervisor. CTRL-C will stop the container."
+/usr/bin/supervisord -c /etc/supervisord.conf >> /dev/null
+
